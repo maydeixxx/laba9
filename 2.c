@@ -4,15 +4,6 @@
 #define M 5
 #define N 5
 
-void matrica(float A[M][N]) {
-    for (int i = 0; i < M; i++) {
-        for (int j = 0; j < N; j++) {
-            printf("%.2f ", A[i][j]);
-        }
-        printf("\n");
-    }
-}
-
 void delenie(float A[M][N]) {
     for (int i = 0; i < M; i++) {
         float sum = 0.0;
@@ -30,21 +21,27 @@ void delenie(float A[M][N]) {
 }
 
 int main() {
-    float A[M][N] = {
-        {1.0, 7.0, 3.0, 4.0, 5.0},
-        {8.0, 3.0, 2.0, 2.0, 1.0},
-        {3.0, 3.0, 3.0, 5.0, 6.0},
-        {2.0, 5.0, 5.0, 3.0, 2.0},
-        {3.5, 8.5, 5.5, 4.5, 5.5}
-    };
+    float A[M][N];
 
     printf("Исходная матрица:\n");
-    matrica(A);
+    for(int i = 0; i < M; i++) {
+        for(int j = 0; j < N; j++) {
+            A[i][j] = rand() % 10;
+            printf("%3.0f", A[i][j]);
+        }
+        printf("\n");
+    }
+
 
     delenie(A);
 
     printf("\nМатрица после деления строк:\n");
-    matrica(A);
+    for(int i = 0; i < M; i++) {
+        for(int j = 0; j < N; j++) {
+            printf(" %.3f", A[i][j]);
+        }
+        printf("\n");
+    }
 
     return 0;
 }

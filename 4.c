@@ -1,90 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define M 3
 #define N 3
-#define summa 15
-
-int isMagicSquare(int square[N][N]) {
-    int sum;
-
-    for (int i = 0; i < N; i++) {
-        sum = 0;
-        for (int j = 0; j < N; j++) {
-            sum += square[i][j];
-        }
-        if (sum != summa) {
-            return 0;
-        }
-    }
-
-    for (int j = 0; j < N; j++) {
-        sum = 0;
-        for (int i = 0; i < N; i++) {
-            sum += square[i][j];
-        }
-        if (sum != summa) {
-            return 0;
-        }
-    }
-
-    sum = 0;
-    for (int i = 0; i < N; i++) {
-        sum += square[i][i];
-    }
-    if (sum != summa) {
-        return 0;
-    }
-
-    sum = 0;
-    for (int i = 0; i < N; i++) {
-        sum += square[i][N - 1 - i];
-    }
-    if (sum != summa) {
-        return 0;
-    }
-
-    return 1; 
-}
-
-void magKvadrat(int square[N][N]) {
-    int numbers[N * N];
-    for (int i = 0; i < N * N; i++) {
-        numbers[i] = i + 1; 
-    }
-
-    for (int i = 0; i < N * N; i++) {
-        int j = rand() % (N * N);
-        int temp = numbers[i];
-        numbers[i] = numbers[j];
-        numbers[j] = temp;
-    }
-
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            square[i][j] = numbers[i * N + j];
-        }
-    }
-}
 
 int main() {
-
-    int square[N][N];
-    int count = 0;
-
-    do {
-        magKvadrat(square);
+    int A[M][N], line1, line2, line3, row1, row2, row3, count;
+    while (1) {
+        line1 = line2 = line3 = 0;
+        row1 = row2 = row3 = 0;
         count++;
-    } while (!isMagicSquare(square));
 
-    printf("магический квадрат:\n");
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            printf("%2d ", square[i][j]);
+    for(int i = 0; i < M; i++) {
+        for(int j = 0; j < N; j++) {
+            A[i][j] = rand() % 5;
         }
-        printf("\n");
     }
 
-    printf("Количество генераций: %d\n", count);
-
+    for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (i == 0) {
+                    line1 += A[i][j];
+                    row1 += A[j][i];
+                }
+                if (i == 1) {
+                    line2 += A[i][j];
+                    row2 += A[j][i];
+                }
+                if (i == 2) {
+                    line3 += A[i][j];
+                    row3 += A[j][i];
+                }
+            }
+        }
+        if (row1 == row2 && row2 == row3 &&
+            line1 == line2 && line2 == line3) {
+            printf(" Маг.куб %d генераций:\n", count);
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    printf(" %3d", A[i][j]);
+                }
+                printf("\n");
+            }
+            break; 
+        }
+    }
     return 0;
 }
+    

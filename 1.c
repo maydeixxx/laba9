@@ -16,7 +16,7 @@ int main() {
 
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
-            A[i][j] = i * N + j + 1;
+            A[i][j] = rand()%10;
             printf("%4d", A[i][j]);
         }
         printf("\n");
@@ -26,6 +26,7 @@ int main() {
         stroki(A, i, i + 1);
     }
 
+    printf("\n");
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
             printf("%4d", A[i][j]);
