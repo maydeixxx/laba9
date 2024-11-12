@@ -3,33 +3,30 @@
 const int M = 10;
 const int N = 20;
 
-    void stroki(int A[M][N], int str1, int str2) {
-    for (int j = 0; j < N; j++) {
-        int temp = A[str1][j];
-        A[str1][j] = A[str2][j];
-        A[str2][j] = temp;
-    }
-}
 
 int main() {
-    int i, j, A[M][N];
+    int i, j, A[M][N], str1, str2;
 
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
             A[i][j] = rand()%10;
-            printf("%4d", A[i][j]);
+            printf("%3d", A[i][j]);
         }
         printf("\n");
     }
 
-    for (int i = 0; i < M; i += 2) {
-        stroki(A, i, i + 1);
+    for (i = 0; i < M - 1; i += 2) {
+        for (j = 0; j < N; j++) {
+            int temp = A[i][j];
+            A[i][j] = A[i + 1][j];
+            A[i + 1][j] = temp;
+        }
     }
 
     printf("\n");
-    for(int i = 0; i < M; i++) {
-        for(int j = 0; j < N; j++) {
-            printf("%4d", A[i][j]);
+    for (i = 0; i < M; i++) {
+        for (j = 0; j < N; j++) {
+            printf("%3d", A[i][j]);
         }
         printf("\n");
     }

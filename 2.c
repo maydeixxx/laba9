@@ -11,7 +11,7 @@ int main() {
     for(int i = 0; i < M; i++) {
         for(int j = 0; j < N; j++) {
             A[i][j] = rand() % 10;
-            printf("%3.0f", A[i][j]);
+            printf(" %.2f", A[i][j]);
         }
         printf("\n");
     }
